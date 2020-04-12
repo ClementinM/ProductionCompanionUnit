@@ -10,7 +10,7 @@ Project exploring simple ways to help artists with daily operations when working
 wip
 
 ## Resources
-[Project progress (Trello)](https://trello.com/b/TQWV53Ln/production-companion-unit)
+[Project progress (Trello)](https://trello.com/b/TQWV53Ln)
 
 ## Contact
 Clementin Massin
