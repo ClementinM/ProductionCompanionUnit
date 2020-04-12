@@ -1,4 +1,18 @@
-# ProductionCompanionUnit (PCU)
-The Production Companion Unit helps VFX artists to manage some daily productions actions.
+# VFX: Production Companion Unit (PCU)
+Project exploring simple ways to help artists with daily operations when working on VFX productions.
 
-2020-04-05, Clementin Massin
+[![project_vfx_pipeline](https://img.shields.io/badge/my%20category-vfx--pipeline-brightgreen?style=flat-square)](https://github.com/ClementinM?tab=repositories&q=%23vfx-pipeline&type=&language=)
+
+## Download
+[![latest_stable](https://img.shields.io/github/v/release/ClementinM/ProductionCompanionUnit?label=latest%20release&style=flat-square)](https://github.com/ClementinM/ProductionCompanionUnit/releases/latest)
+
+## Installation
+wip
+
+## Resources
+[Project progress (Trello)](https://trello.com/b/TQWV53Ln/production-companion-unit)
+
+## Contact
+Clementin Massin
+| [GitHub](https://github.com/ClementinM?tab=repositories)
+| [Linkedin](https://www.linkedin.com/in/clementinmassin)
