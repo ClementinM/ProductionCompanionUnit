@@ -75,3 +75,108 @@ if __name__ == '__main__':
     pcu_window_main = PCUwindowApp()
     pcu_window_main.show()
     app.exec_()
+
+"""
+##################################
+
+
+class PCUmenu(QtWidgets.QWidget):
+    def __init__(self, parent):
+        super(PCUmenu, self).__init__(parent=parent)
+        self.parent = parent
+
+    def set_menu(self):
+        self.parent.setCentralWidget(self)
+
+    def separate_thread(self, func, func_start=None, func_finished=None):
+        menu_thread = PCUmenuThread(self, func=func)
+        if func_start:
+            menu_thread.sig_start.connect(func_start)
+        if func_finished:
+            menu_thread.sig_finished.connect(func_finished)
+        menu_thread.start()
+
+
+class PCUmenuThread(QtCore.QThread):
+    sig_start = QtCore.pyqtSignal()
+    sig_finished = QtCore.pyqtSignal()
+
+    def __init__(self, parent=None, func=None):
+        super(PCUmenuThread, self).__init__(parent=parent)
+        self.parent = parent
+        self.function_to_run = func
+
+    def run(self):
+        self.sig_start.emit()
+        if self.function_to_run:
+            self.function_to_run()
+        self.sig_finished.emit()
+
+
+##################################
+
+
+class PCUappMainWindow(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(PCUappMainWindow, self).__init__()
+        self.setFixedSize(800, 800)
+
+    def closeEvent(self, event):
+        # TODO: exit running threads
+        print('CLOSING')
+        print(event)
+
+
+class BootMenu(PCUmenu):
+    def __init__(self, parent):
+        super(BootMenu, self).__init__(parent=parent)
+        main_layout = QtWidgets.QVBoxLayout(self)
+        self.setLayout(main_layout)
+        boot_widget = QtWidgets.QLabel('loading...........', self)
+        main_layout.addWidget(boot_widget)
+        print('boot init done')
+
+
+class SlowMenu(PCUmenu):
+
+    def __init__(self, parent):
+        super(SlowMenu, self).__init__(parent=parent)
+
+        main_layout = QtWidgets.QVBoxLayout(self)
+        self.setLayout(main_layout)
+
+        self.slow_widget = QtWidgets.QLabel('BONJOUR', self)
+        main_layout.addWidget(self.slow_widget)
+
+        self.separate_thread(func=self.slow_function_1, func_finished=self.set_menu)
+        self.separate_thread(func=self.slow_function_2)
+
+    def slow_function_1(self):
+        print('SLOW MENU 1: start')
+        time.sleep(2)
+        print('SLOW MENU 1: stop')
+
+    def slow_function_2(self):
+        print('SLOW MENU 2: start')
+        time.sleep(4)
+        self.slow_widget.setText('GNA')
+        print('SLOW MENU 2: stop')
+
+
+class PCUapp(object):
+    def __init__(self):
+        self.main_menu = PCUappMainWindow()
+
+        self.boot_menu = BootMenu(self.main_menu)
+        self.boot_menu.set_menu()
+
+        self.main_menu.show()
+
+        self.slow_menu = SlowMenu(self.main_menu)
+
+
+if __name__ == '__main__':
+    app = QtWidgets.QApplication([])
+    pcu_application = PCUapp()
+    app.exec_()
+"""
