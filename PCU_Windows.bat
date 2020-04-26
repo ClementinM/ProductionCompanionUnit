@@ -5,7 +5,7 @@ TITLE PCU Console
 SET "PCU_ROOT=%CD%"
 SET "PYTHONPATH=%PCU_ROOT%;%PYTHONPATH%"
 
-REM python3 "./core/launcher/main.py"
-python3 ".test.py"
+python3 "./core/app/launcher.py"
+REM python3 ".test_2.py"
 
 REM PAUSE
