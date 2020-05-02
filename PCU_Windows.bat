@@ -6,6 +6,5 @@ SET "PCU_ROOT=%CD%"
 SET "PYTHONPATH=%PCU_ROOT%;%PYTHONPATH%"
 
 python3 "./core/app/launcher.py"
-REM python3 ".test_2.py"
 
 REM PAUSE

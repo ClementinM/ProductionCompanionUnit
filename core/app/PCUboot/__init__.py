@@ -1,1 +1,1 @@
-from .boot import PCUmenuBoot
+from .PCUmenuBoot import PCUmenuBoot

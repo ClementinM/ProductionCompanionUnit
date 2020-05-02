@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 
 if __name__ == '__main__':
-    PCUlogging.setup_loggers()
+    PCUlogging.PCUloggerSetup()
 
     app = QtWidgets.QApplication(sys.argv)
     pcu_app = PCUapp.PCUapp()

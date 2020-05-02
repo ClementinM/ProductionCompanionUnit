@@ -1,1 +1,1 @@
-from .setup_logger import setup_loggers
+from .PCUloggerSetup import PCUloggerSetup
