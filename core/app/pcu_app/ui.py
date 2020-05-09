@@ -38,21 +38,20 @@ class PCUwindowMain(QtWidgets.QMainWindow):
         self.setCentralWidget(self.central_widget)
         self.central_widget.setVisible(True)
 
-    def add_to_module_bar(self, module):
-        module_bar_name = module.module_bar_name
-        module_button = QtWidgets.QPushButton(module_bar_name.upper(), self)
-        module.module_bar_button = module_button
-        module_button.clicked.connect(lambda: self.set_current_module(module))
+    def add_to_module_bar(self, module_ui):
+        module_button = QtWidgets.QPushButton('[ {} ]'.format(module_ui.MODULE_BAR_NAME.upper()), self)
+        module_ui.bar_button = module_button
+        module_button.clicked.connect(lambda: self.set_current_module(module_ui))
         self.module_bar.addWidget(module_button)
 
-    def set_current_module(self, module):
+    def set_current_module(self, module_ui):
         if self.current_module:
-            if module == self.current_module:
+            if module_ui == self.current_module:
                 return
-            self.current_module.module_bar_button.setStyleSheet(self.styleSheet())
+            self.current_module.bar_button.setStyleSheet(self.styleSheet())
             self.current_module.setParent(None)
-        self.current_module = module
-        self.current_module.module_bar_button.setStyleSheet(self.current_module_style)
+        self.current_module = module_ui
+        self.current_module.bar_button.setStyleSheet(self.current_module_style)
         self.current_module.setParent(self)
         self.module_layout.addWidget(self.current_module)
 
