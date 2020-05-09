@@ -1,1 +1,1 @@
-from .PCUmoduleMain import PCUmoduleMain
+from .pcu_module_main import PCUmoduleMain

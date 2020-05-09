@@ -20,6 +20,6 @@ def set_boot_logger():
     logger.addHandler(ch)
 
 
-def PCUloggerSetup():
+def pcu_logger_setup():
     set_global_logger()
     set_boot_logger()

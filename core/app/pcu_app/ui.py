@@ -1,7 +1,7 @@
 import logging
 
 from PyQt5 import QtWidgets
-from ui import PCUstylesheets
+from ui import pcu_stylesheets
 
 logger = logging.getLogger(__name__)
 
@@ -10,7 +10,7 @@ class PCUwindowMain(QtWidgets.QMainWindow):
     def __init__(self):
         super(PCUwindowMain, self).__init__()
 
-        self.setStyleSheet(PCUstylesheets.get('main'))
+        self.setStyleSheet(pcu_stylesheets.get('main'))
         self.setWindowTitle('PCU - Production Companion Unit')
         self.setFixedSize(800, 800)
 

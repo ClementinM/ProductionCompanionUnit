@@ -1,4 +1,4 @@
-from .PCUwidgetMultithread import PCUwidgetMultithread
+from .pcu_widget_multithread import PCUwidgetMultithread
 
 
 class PCUmenu(PCUwidgetMultithread):

@@ -34,7 +34,7 @@ class PCUmenuBoot(QtWidgets.QWidget):
         init_standby_label.setStyleSheet('font-size: 24pt;')
         main_layout.addWidget(init_standby_label)
 
-        init_boot_label = QtWidgets.QLabel('<center>PCU IS INITIATING...</center>', self)
+        init_boot_label = QtWidgets.QLabel('<center>INITIATING...</center>', self)
         opacity = QtWidgets.QGraphicsOpacityEffect()
         opacity.setOpacity(0.5)
         init_boot_label.setGraphicsEffect(opacity)

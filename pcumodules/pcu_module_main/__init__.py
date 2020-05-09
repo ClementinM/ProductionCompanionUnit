@@ -3,12 +3,12 @@ import time
 
 from PyQt5 import QtWidgets, QtCore
 
-from ui import PCUwidgets
+from ui.pcu_widgets import PCUmenu
 
 logger = logging.getLogger(__name__)
 
 
-class PCUmoduleMain(PCUwidgets.PCUmenu):
+class PCUmoduleMain(PCUmenu):
     def __init__(self, parent):
         super(PCUmoduleMain, self).__init__(parent=parent)
         self.name = 'Main'
@@ -25,4 +25,3 @@ class PCUmoduleMain(PCUwidgets.PCUmenu):
         self.tmp_widget = QtWidgets.QLabel(message, self)
         self.tmp_widget.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
         main_layout.addWidget(self.tmp_widget)
-

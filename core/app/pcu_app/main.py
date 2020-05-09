@@ -2,8 +2,8 @@ import logging
 
 import pcumodules
 
-from .PCUwindowMain import PCUwindowMain
-from core.app import PCUboot
+from .ui import PCUwindowMain
+from core.app import pcu_boot
 
 logger = logging.getLogger(__name__)
 
@@ -13,7 +13,7 @@ class PCUapp(object):
         self.window_main = PCUwindowMain()
 
         # Init window with boot loading screen
-        self.menu_boot = PCUboot.PCUmenuBoot(self.window_main)
+        self.menu_boot = pcu_boot.PCUmenuBoot(self.window_main)
         self.window_main.show()
 
         # INIT CORE MODULES
