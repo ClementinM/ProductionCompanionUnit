@@ -1,5 +1,4 @@
 import logging
-import time
 
 from PyQt5 import QtWidgets, QtCore
 
@@ -9,10 +8,17 @@ logger = logging.getLogger(__name__)
 
 
 class PCUmoduleWelcomeUi(PCUmoduleMenu):
+    """
+    PCU module main menu.
+    """
     MODULE_BAR_NAME = 'Welcome'
 
-    def __init__(self, parent):
-        super(PCUmoduleWelcomeUi, self).__init__(parent=parent)
+    def __init__(self, core, parent):
+        """
+        :param class core: logic core class of the pcu_module
+        :param QWidget parent: ui parent object
+        """
+        super(PCUmoduleWelcomeUi, self).__init__(core=core, parent=parent)
 
         main_layout = QtWidgets.QVBoxLayout()
         main_layout.setAlignment(QtCore.Qt.AlignTop)

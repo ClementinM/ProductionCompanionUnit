@@ -18,12 +18,25 @@ class QWidgetThread(QtCore.QThread):
 
 
 class PCUwidgetMultithread(QtWidgets.QWidget):
+    """
+    UI widget: Qwidget with an option to run a function into a separate thread.
+    """
     def __init__(self, parent=None):
+        """
+        :param QWidget parent: ui parent object
+        """
         super(PCUwidgetMultithread, self).__init__(parent=parent)
         self.parent = parent
         self.menu_thread = None
 
     def separate_thread(self, func, func_start=None, func_finished=None):
+        """
+        Function wrapper which runs a function in a separated thread.
+
+        :param function func: function to run in a separated thread
+        :param function func_start: function to run before the main func
+        :param function func_finished: function to run after the main func
+        """
         self.menu_thread = QWidgetThread(self, func=func)
         if func_start:
             self.menu_thread.sig_start.connect(func_start)

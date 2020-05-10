@@ -7,21 +7,36 @@ logger = logging.getLogger(__name__)
 
 
 class PCUmenuBoot(QtWidgets.QWidget):
+    """
+    PCU boot menu, displayed during the loading time at the startup.
+    """
     def __init__(self, parent):
+        """
+        :param QWidget parent: ui parent object
+        """
         super(PCUmenuBoot, self).__init__(parent)
         self.parent = parent
         self.resize(self.parent.width(), self.parent.height())
 
-        self.boot_terminal_message()
+        logger_pcu_boot.info(self.boot_terminal_message())
         self.init_ui()
 
     @staticmethod
     def boot_terminal_message():
+        """
+        Return boot terminal message, with some info about the app.
+
+        :return message: info message
+        :rtype: str
+        """
         message = 'PRODUCTION COMPANION UNIT\n' \
                   '2020 CLEMENTIN MASSIN - https://github.com/ClementinM/ProductionCompanionUnit'
-        logger_pcu_boot.info(message)
+        return message
 
     def init_ui(self):
+        """
+        Initialize the ui.
+        """
         self.setGeometry(0, 0, self.parent.width(), self.parent.height())
         self.setStyleSheet('font-weight: bold;')
 
@@ -43,5 +58,8 @@ class PCUmenuBoot(QtWidgets.QWidget):
         main_layout.addStretch()
 
     def closing(self):
+        """
+        Close this menu.
+        """
         self.setParent(None)
         self.close()
