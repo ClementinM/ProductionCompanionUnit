@@ -1,9 +1,12 @@
 import logging
+import os
 
 import pcu_modules
 
 from .ui import PCUwindowMain
-from core.app.pcu_boot import PCUmenuBoot
+from .. import pcu_environment
+from ..pcu_boot import PCUmenuBoot
+
 
 logger = logging.getLogger(__name__)
 
@@ -21,8 +24,8 @@ class PCUapp(object):
         self.pcu_window_main.show()
 
         # Setup env
-        # TODO: setup user loggin
-        # TODO: setup env
+        # TODO: finishing the env setup
+        pcu_environment.update_user('0000')
 
         # Init PCU modules
         self.modules = [

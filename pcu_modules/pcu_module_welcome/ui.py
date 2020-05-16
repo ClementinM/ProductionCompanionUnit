@@ -3,6 +3,7 @@ import logging
 from PyQt5 import QtWidgets, QtCore
 
 from .. import PCUmoduleMenu
+from core.app import pcu_environment
 
 logger = logging.getLogger(__name__)
 
@@ -24,9 +25,11 @@ class PCUmoduleWelcomeUi(PCUmoduleMenu):
         main_layout.setAlignment(QtCore.Qt.AlignTop)
         self.setLayout(main_layout)
 
-        message = 'Welcome!\n\n\n' \
+        current_user = pcu_environment.user()
+
+        message = 'Welcome {}!\n\n\n' \
                   'PRODUCTION COMPANION UNIT - 2020 CLEMENTIN MASSIN\n' \
-                  'https://github.com/ClementinM/ProductionCompanionUnit'
+                  'https://github.com/ClementinM/ProductionCompanionUnit'.format(current_user.name_full.title())
 
         self.tmp_widget = QtWidgets.QLabel(message, self)
         self.tmp_widget.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
