@@ -1,29 +1,34 @@
+import json
 import logging
 import os
 import uuid
 
 from .pcu_user import PCUuser
+import config
 
 logger = logging.getLogger(__name__)
 
 
 class PCUusersDatabase(object):
-    PCU_USER_DATABASE_PATH = ''
+    USERS_DATABASE_PATH = config.PCU_CONFIG_PATH_USERS
+    USERS_DATABASE_USER_FILEEXT = '.json'
+    USERS_DATABASE_USER_FILENAME = '{local_id}_{name_id}'
+
+    @property
+    def registered_userdata_files(self):
+        # TODO: add regex to check and get userdata files
+        userdata_files = [os.path.join(self.USERS_DATABASE_PATH, f)
+                          for f in os.listdir(self.USERS_DATABASE_PATH)
+                          if os.path.splitext(f)[-1] == self.USERS_DATABASE_USER_FILEEXT]
+        return userdata_files
 
     @property
     def registered_userdatas(self):
-        # TODO: remove this tmp database and create a real one
-        return [{PCUuser.USERDATA_KEY_IDS: '0000',
-                 PCUuser.USERDATA_KEY_NAME_ID: 'cmassin',
-                 PCUuser.USERDATA_KEY_NAME_FIRST: 'clementin',
-                 PCUuser.USERDATA_KEY_NAME_LAST: 'massin'
-                 },
-                {PCUuser.USERDATA_KEY_IDS: '0001',
-                 PCUuser.USERDATA_KEY_NAME_ID: 'tstory',
-                 PCUuser.USERDATA_KEY_NAME_FIRST: 'toto',
-                 PCUuser.USERDATA_KEY_NAME_LAST: 'story'
-                 }
-                ]
+        userdatas = []
+        for userdata_file in self.registered_userdata_files:
+            with open(userdata_file) as udf:
+                userdatas.append(json.load(udf))
+        return userdatas
 
     @property
     def registered_users(self):
@@ -40,21 +45,25 @@ class PCUusersDatabase(object):
     def is_user_registered(self, user):
         return True if self.get_user_from_id(user.local_id) else False
 
-    def register_new_user(self, name_id, name_first, name_last):
+    def register_new_user(self, name_id, name_first, name_last, email):
         local_id = str(uuid.uuid4())
         if self.get_user_from_id(local_id):
             return
         new_userdata = {PCUuser.USERDATA_KEY_IDS: local_id,
                         PCUuser.USERDATA_KEY_NAME_ID: name_id,
                         PCUuser.USERDATA_KEY_NAME_FIRST: name_first,
-                        PCUuser.USERDATA_KEY_NAME_LAST: name_last
+                        PCUuser.USERDATA_KEY_NAME_LAST: name_last,
+                        PCUuser.USERDATA_KEY_EMAIL: email
                         }
         new_pcu_user = PCUuser(new_userdata)
         self.save_user(new_pcu_user)
         return new_pcu_user
 
-    @staticmethod
-    def save_user(pcu_user):
-        # TODO: saving user
-        userdata = pcu_user.userdata
-        logger.info('------ userdata saved: {}'.format(userdata))
+    def save_user(self, pcu_user):
+        userdata_file_name = '{}{}'.format(self.USERS_DATABASE_USER_FILENAME.format(local_id=pcu_user.local_id,
+                                                                                    name_id=pcu_user.name_id),
+                                           self.USERS_DATABASE_USER_FILEEXT)
+        userdata_file_path = os.path.join(self.USERS_DATABASE_PATH, userdata_file_name)
+        with open(userdata_file_path, 'w') as userdata_file:
+            # TODO: json formatting
+            json.dump(pcu_user.userdata, userdata_file)

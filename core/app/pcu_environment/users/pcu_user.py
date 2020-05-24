@@ -9,6 +9,7 @@ class PCUuser(object):
     USERDATA_KEY_NAME_ID = 'name_id'
     USERDATA_KEY_NAME_FIRST = 'name_first'
     USERDATA_KEY_NAME_LAST = 'name_last'
+    USERDATA_KEY_EMAIL = 'email'
 
     def __init__(self, userdata):
         self.userdata = userdata

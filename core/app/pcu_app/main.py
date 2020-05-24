@@ -1,5 +1,4 @@
 import logging
-import os
 
 import pcu_modules
 
@@ -25,7 +24,9 @@ class PCUapp(object):
 
         # Setup env
         # TODO: finishing the env setup
-        pcu_environment.update_user('0000')
+        userdatabase = pcu_environment.users.PCUusersDatabase()
+        # userdatabase.register_new_user(name_id='cmassin', name_first='clementin', name_last='massin', email='clem.massin@gmail.com')
+        pcu_environment.update_user('00000000-0000-0000-0000-000000000000')
 
         # Init PCU modules
         self.modules = [
