@@ -1,3 +1,3 @@
-from .main import user, update_user
+from .main import update_environ
 
 from . import users

@@ -53,7 +53,8 @@ class PCUusersDatabase(object):
                         PCUuser.USERDATA_KEY_NAME_ID: name_id,
                         PCUuser.USERDATA_KEY_NAME_FIRST: name_first,
                         PCUuser.USERDATA_KEY_NAME_LAST: name_last,
-                        PCUuser.USERDATA_KEY_EMAIL: email
+                        PCUuser.USERDATA_KEY_EMAIL: email,
+                        PCUuser.USERDATA_KEY_PREFERENCES: {}
                         }
         new_pcu_user = PCUuser(new_userdata)
         self.save_user(new_pcu_user)

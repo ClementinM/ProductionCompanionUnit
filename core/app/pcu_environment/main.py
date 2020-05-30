@@ -46,9 +46,9 @@ def update_environ(user_id=None, task_id=None):
 # --- USER ---
 
 
-def user(user_id=None):
+def current_user():
     pcu_users_database = PCUusersDatabase()
-    id_to_use = user_id or os.environ.get(ENV_KEY_USER_ID, None)
+    id_to_use = os.environ.get(ENV_KEY_USER_ID, None)
     return pcu_users_database.get_user_from_id(id_to_use)
 
 
